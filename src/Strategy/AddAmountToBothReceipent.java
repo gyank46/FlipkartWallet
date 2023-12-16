@@ -6,8 +6,6 @@ import Models.Transaction;
 import Models.Wallet;
 import Repository.TransactionRepository;
 import Repository.WalletRepository;
-import Services.RewardService;
-import Services.WalletService;
 
 public class AddAmountToBothReceipent implements Offer1Strategy{
 

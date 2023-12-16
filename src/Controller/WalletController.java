@@ -1,10 +1,15 @@
 package Controller;
 
+import Enums.TransactionType;
 import Models.User;
+import Services.OfferService;
+import Services.TransactionService;
 import Services.WalletService;
 
 public class WalletController {
     WalletService walletService;
+    TransactionService transactionService;
+    OfferService offerService;
     public WalletController(WalletService walletService){
         this.walletService = walletService;
     }

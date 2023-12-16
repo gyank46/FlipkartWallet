@@ -1,20 +1,21 @@
 package Commands;
 
+import Controller.TransactionController;
 import Controller.WalletController;
 
 public class StatementCommand implements ICommand{
 
-    WalletController walletController;
+    TransactionController transactionController;
     String user;
 
-    public StatementCommand(WalletController walletController, String user){
-        this.walletController = walletController;
+    public StatementCommand(TransactionController transactionController, String user){
+        this.transactionController = transactionController;
         this.user = user;
     }
 
 
     @Override
     public void execute() {
-        walletController.getStatement(user);
+        transactionController.getTransactions(user);
     }
 }

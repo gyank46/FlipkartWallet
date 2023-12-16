@@ -46,8 +46,6 @@ public class WalletService {
         }
         fromWallet.setBalance(fromWallet.getBalance() - amount);
         toWallet.setBalance(toWallet.getBalance() + amount);
-        addNewTransaction(userFrom, userTo, amount, TransactionType.DEBIT);
-        addNewTransaction(userTo, userFrom, amount, TransactionType.CREDIT);
         checkAndApplyOffer1(userFrom, userTo);
     }
 

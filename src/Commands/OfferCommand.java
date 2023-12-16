@@ -1,16 +1,17 @@
 package Commands;
 
+import Controller.OfferController;
 import Controller.WalletController;
 
 public class OfferCommand {
-    WalletController walletController;
+    OfferController offerController;
 
-    public OfferCommand(WalletController walletController){
-        this.walletController = walletController;
+    public OfferCommand(OfferController offerController){
+        this.offerController = offerController;
     }
 
     public void execute() {
-        walletController.applyOffer2();
+        offerController.applyOffer2();
     }
 
 

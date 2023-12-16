@@ -1,7 +1,11 @@
 import Commands.*;
+import Controller.OfferController;
+import Controller.TransactionController;
 import Controller.WalletController;
 import Repository.TransactionRepository;
 import Repository.WalletRepository;
+import Services.OfferService;
+import Services.TransactionService;
 import Services.WalletService;
 
 public class Main {
@@ -10,7 +14,11 @@ public class Main {
         TransactionRepository transactionRepository = new TransactionRepository();
         WalletRepository walletRepository = new WalletRepository();
         WalletService walletService = new WalletService(walletRepository, transactionRepository);
+        TransactionService transactionService = new TransactionService(transactionRepository);
+        OfferService offerService = new OfferService(walletRepository, transactionRepository);
         WalletController walletController = new WalletController(walletService);
+        TransactionController transactionController = new TransactionController(transactionService);
+        OfferController offerController = new OfferController(offerService);
 
         ICommand command  = new CreateWalletCommand(walletController, "Harry", 100, "INR");
         command.execute();
@@ -27,20 +35,20 @@ public class Main {
         command = new OverviewCommand(walletController);
         command.execute();
 
-        command = new TransferMoneyCommand(walletController, "Albus", "Draco", 30);
+        command = new TransferMoneyCommand(walletController, transactionController,offerController, "Albus", "Draco", 30);
         command.execute();
-        command = new TransferMoneyCommand(walletController, "Hermione", "Harry", 2);
+        command = new TransferMoneyCommand(walletController, transactionController,offerController, "Hermione", "Harry", 2);
         command.execute();
-        command = new TransferMoneyCommand(walletController, "Albus", "Ron", 5);
+        command = new TransferMoneyCommand(walletController, transactionController,offerController,"Albus", "Ron", 5);
         command.execute();
 
 
         command = new OverviewCommand(walletController);
         command.execute();
 
-        command = new StatementCommand(walletController, "Harry");
+        command = new StatementCommand(transactionController, "Harry");
         command.execute();
-        command = new StatementCommand(walletController, "Albus");
+        command = new StatementCommand(transactionController, "Albus");
         command.execute();
 
 
